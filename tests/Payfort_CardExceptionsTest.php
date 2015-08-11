@@ -1,11 +1,11 @@
 <?php
 
-class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
+class Payfort_CardExceptionsTest extends \PHPUnit_Framework_TestCase
 {
 
   function setUp()
   {
-    White::setApiKey('test_sec_k_25dd497d7e657bb761ad6');
+    Payfort::setApiKey('test_sec_k_25dd497d7e657bb761ad6');
   }
 
   function testCardDeclined()
@@ -24,8 +24,8 @@ class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
     );
 
     try{
-      $result = White_Charge::create($data);
-    } catch (White_Error_Banking $e) {
+      $result = Payfort_Charge::create($data);
+    } catch (Payfort_Error_Banking $e) {
       $this->assertEquals('card_declined', $e->getErrorCode());
     }
   }
@@ -45,8 +45,8 @@ class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
     );
 
     try{
-      $result = White_Charge::create($data);
-    } catch (White_Error_Request $e) {
+      $result = Payfort_Charge::create($data);
+    } catch (Payfort_Error_Request $e) {
       $this->assertEquals('unprocessable_entity', $e->getErrorCode());
     }
   }
@@ -66,8 +66,8 @@ class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
     );
 
     try{
-      $result = White_Charge::create($data);
-    } catch (White_Error_Request $e) {
+      $result = Payfort_Charge::create($data);
+    } catch (Payfort_Error_Request $e) {
       $this->assertEquals('unprocessable_entity', $e->getErrorCode());
     }
   }
@@ -87,8 +87,8 @@ class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
     );
 
     try{
-      $result = White_Charge::create($data);
-    } catch (White_Error_Request $e) {
+      $result = Payfort_Charge::create($data);
+    } catch (Payfort_Error_Request $e) {
       $this->assertEquals('unprocessable_entity', $e->getErrorCode());
     }
   }
@@ -111,8 +111,8 @@ class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
     );
 
     try{
-      $result = White_Charge::create($data);
-    } catch (White_Error_Card $e) {
+      $result = Payfort_Charge::create($data);
+    } catch (Payfort_Error_Card $e) {
       $this->assertEquals('processing_error', $e->getErrorCode());
     }
   }
@@ -134,8 +134,8 @@ class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
     );
 
     try{
-      $result = White_Charge::create($data);
-    } catch (White_Error_Request $e) {
+      $result = Payfort_Charge::create($data);
+    } catch (Payfort_Error_Request $e) {
       $this->assertEquals('unprocessable_entity', $e->getErrorCode());
     }
   }
@@ -155,8 +155,8 @@ class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
     );
 
     try{
-      $result = White_Charge::create($data);
-    } catch (White_Error_Request $e) {
+      $result = Payfort_Charge::create($data);
+    } catch (Payfort_Error_Request $e) {
       $this->assertEquals('unprocessable_entity', $e->getErrorCode());
     }
   }
@@ -176,8 +176,8 @@ class White_CardExceptionsTest extends \PHPUnit_Framework_TestCase
     );
 
     try{
-      $result = White_Charge::create($data);
-    } catch (White_Error_Request $e) {
+      $result = Payfort_Charge::create($data);
+    } catch (Payfort_Error_Request $e) {
       $this->assertEquals('unprocessable_entity', $e->getErrorCode());
     }
   }

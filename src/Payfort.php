@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Class to hold White API settings
- * 
- * @author Yazin <yazin@whitepayments.com>
- * @link https://whitepayments.com/docs/
+ * Class to hold Payfort API settings
+ *
+ * @author Yazin <yazin@payfort.com>
+ * @link https://start.payfort.com/docs/
  * @license http://opensource.org/licenses/MIT
  */
 
-class White
+class Payfort
 {
 
   /**
@@ -21,7 +21,7 @@ class White
   * API Server URL
   * @var string
   */
-  protected static $baseURL = 'https://api.whitepayments.com/';
+  protected static $baseURL = 'https://api.start.payfort.com/';
 
   /**
   * API endpoints
@@ -44,7 +44,7 @@ class White
 
   /**
   * sets API Key
-  * 
+  *
   * @param string $apiKey API key
   */
   public static function setApiKey($apiKey)
@@ -54,7 +54,7 @@ class White
 
   /**
   * returns current set API Key
-  * 
+  *
   * @return string ApiKey
   */
   public static function getApiKey()
@@ -64,7 +64,7 @@ class White
 
   /**
   * returns current set API Base URL
-  * 
+  *
   * @return string BaseURL
   */
   public static function getBaseURL()
@@ -74,7 +74,7 @@ class White
 
   /**
   * returns full endpoint URI
-  * 
+  *
   * @return string endpoint URI
   */
   public static function getEndPoint($name)
@@ -85,24 +85,24 @@ class White
   public static function handleErrors($result, $httpStatusCode)
   {
     switch($result['error']['type']) {
-      case White_Error_Authentication::$TYPE:
-        throw new White_Error_Authentication($result['error']['message'], $result['error']['code'], $httpStatusCode);
+      case Payfort_Error_Authentication::$TYPE:
+        throw new Payfort_Error_Authentication($result['error']['message'], $result['error']['code'], $httpStatusCode);
         break;
 
-      case White_Error_Banking::$TYPE:
-        throw new White_Error_Banking($result['error']['message'], $result['error']['code'], $httpStatusCode);
+      case Payfort_Error_Banking::$TYPE:
+        throw new Payfort_Error_Banking($result['error']['message'], $result['error']['code'], $httpStatusCode);
         break;
 
-      case White_Error_Processing::$TYPE:
-        throw new White_Error_Processing($result['error']['message'], $result['error']['code'], $httpStatusCode);
+      case Payfort_Error_Processing::$TYPE:
+        throw new Payfort_Error_Processing($result['error']['message'], $result['error']['code'], $httpStatusCode);
         break;
 
-      case White_Error_Request::$TYPE:
-        throw new White_Error_Request($result['error']['message'], $result['error']['code'], $httpStatusCode);
+      case Payfort_Error_Request::$TYPE:
+        throw new Payfort_Error_Request($result['error']['message'], $result['error']['code'], $httpStatusCode);
         break;
     }
 
     // None of the above? Throw a general White Error
-    throw new White_Error($result['error']['message'], $result['error']['code'], $httpStatusCode);
+    throw new Payfort_Error($result['error']['message'], $result['error']['code'], $httpStatusCode);
   }
 }

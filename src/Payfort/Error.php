@@ -1,9 +1,9 @@
 <?php
 /**
- * Generic White error
+ * Generic Payfort error
  */
 
-class White_Error extends \Exception
+class Payfort_Error extends \Exception
 {
 
   /**

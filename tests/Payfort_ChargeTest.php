@@ -1,16 +1,16 @@
 <?php
 
-class White_ChargeTest extends \PHPUnit_Framework_TestCase
+class Payfort_ChargeTest extends \PHPUnit_Framework_TestCase
 {
 
   function setUp()
   {
-    White::setApiKey('test_sec_k_25dd497d7e657bb761ad6');
+    Payfort::setApiKey('test_sec_k_25dd497d7e657bb761ad6');
   }
 
   function testList()
   {
-    $result = White_Charge::all();
+    $result = Payfort_Charge::all();
     //No assertion. If there is an error, an exception is thrown. Otherwise it was ok.
   }
 
@@ -29,7 +29,7 @@ class White_ChargeTest extends \PHPUnit_Framework_TestCase
       "description" => "Charge for test@example.com"
     );
 
-    $result = White_Charge::create($data);
+    $result = Payfort_Charge::create($data);
 
     $expected = array(
       "id" => "ch_3c513b0dfdc110b11b4091e2cbf6dc23",
