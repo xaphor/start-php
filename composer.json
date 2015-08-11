@@ -16,8 +16,8 @@
   "lib-curl": "*",
   "autoload": {
     "psr-0": {
-      "Start": "src/",
-      "Start\\Test": "tests/"
+      "Payfort": "src/",
+      "Payfort\\Test": "tests/"
     }
   }
 }
