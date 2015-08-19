@@ -14,7 +14,7 @@ class Start
   * Client version
   * @var string
   */
-  const VERSION = '0.0.4';
+  const VERSION = '0.0.5';
 
   /**
   * Current API key
