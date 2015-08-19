@@ -53,6 +53,7 @@ class Start_Customer
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_USERPWD, Start::getApiKey() . ':');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Start/PHP/' . Start::VERSION);
     $result = json_decode(curl_exec($ch), true);
 
     // Check for errors and such.
