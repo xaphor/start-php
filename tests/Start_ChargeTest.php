@@ -26,7 +26,11 @@ class Start_ChargeTest extends \PHPUnit_Framework_TestCase
         "exp_year" => 2016,
         "cvc" => "123"
       ),
-      "description" => "Charge for test@example.com"
+      "description" => "Charge for test@example.com",
+      "metadata" => array(
+          "reference_id" => "1234567890",
+          "tag" => "new"
+      )
     );
 
     $result = Start_Charge::create($data);
@@ -48,10 +52,15 @@ class Start_ChargeTest extends \PHPUnit_Framework_TestCase
       "created_at" => "2014-08-14T16:20:53.451+03:00",
       "updated_at" => "2014-08-14T16:20:53.451+03:00",
       "object" => "charge",
-      "card" => array()
+      "card" => array(),
+      "metadata" => array()
     );
 
     $this->assertEquals(sort(array_keys($expected)), sort(array_keys($result)));
+    $this->assertEquals($result["metadata"],array(
+        "reference_id" => "1234567890",
+        "tag" => "new"
+    ));
     $this->assertNull($result['failure_code']);
   }
 }
