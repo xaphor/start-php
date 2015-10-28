@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/payfort/start-php.svg?branch=master)](https://travis-ci.org/payfort/start-php)
+
 # Start PHP
 
 Start makes accepting payments in the Middle East ridiculously easy. Sign up for an account at [https://start.payfort.com](https://start.payfort.com).
