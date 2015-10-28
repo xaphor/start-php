@@ -114,3 +114,5 @@ php vendor/bin/phpunit tests --bootstrap vendor/autoload.php
 ## Contributing
 
 Read our [Contributing Guidelines](CONTRIBUTING.md) for details
+
+Copyright (c) Payfort.
