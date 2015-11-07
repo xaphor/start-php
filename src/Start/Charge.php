@@ -40,7 +40,7 @@ class Start_Charge
     if( $result === false || $errno != 0 ) {
       // Do error checking
       $exception_message = "You weren’t able to make API request due to SSL/TLS error. "
-                . "  Here you can read how to solve this: https://docs.start.payfort.com/help/ssl";
+                . "  Here you can read how to solve this: https://docs.start.payfort.com/help/ssl#error_".$errno;
       throw new Exception($exception_message);
     } else if($info['http_code'] < 200 || $info['http_code'] > 299) {
       // Got a non-200 error code.
