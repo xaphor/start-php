@@ -39,7 +39,13 @@ class Start_Charge
     $errno = curl_errno($ch);
     if( $result === false || $errno != 0 ) {
       // Do error checking
-      throw new Exception(curl_error($ch));
+    if($errno == '1'  || $errno == '35' || $errno == '51' || $errno == '60'){
+        $exception_message = "You weren’t able to make API request due to SSL/TLS error. "
+                . "  Here you can read how to solve this: https://docs.start.payfort.com/help/ssl#error_".$errno;
+        }else{
+           $exception_message = curl_error($ch);  
+        }
+        throw new Exception($exception_message);
     } else if($info['http_code'] < 200 || $info['http_code'] > 299) {
       // Got a non-200 error code.
       Start::handleErrors($result, $info['http_code']);
