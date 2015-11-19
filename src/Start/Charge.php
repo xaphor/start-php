@@ -52,7 +52,7 @@ class Start_Charge
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
     }
-    curl_setopt($ch, CURLOPT_USERAGENT, 'Start/PHP/' . Start::VERSION);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'StartPHP ' . Start::VERSION);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = json_decode(curl_exec($ch), true);
 
