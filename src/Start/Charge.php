@@ -23,14 +23,36 @@ class Start_Charge
   */
   public static function create(array $data)
   {
-    $url = Start::getEndPoint('charge');
+    $return_data = Start_Charge::make_request("charge", $data);
+    return $return_data;
+  }
 
+  /**
+  * List all created charges
+  *
+  * @return array list of transactions
+  * @throws Start_Error_Parameters if any of the parameters is invalid
+  * @throws Start_Error_Authentication if the API Key is invalid
+  * @throws Start_Error if there is a general error in the API endpoint
+  * @throws Exception for any other errors
+  */
+  public static function all()
+  {
+       $return_data =  Start_Charge::make_request("charge_list");
+       return $return_data;
+  }
+  
+  public static function make_request($url, $data =array()){
+    $url = Start::getEndPoint($url);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_CAINFO, Start::getCaPath());
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_USERPWD, Start::getApiKey() . ':');
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    if(!empty($data)){
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    }
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Start/PHP/' . Start::VERSION);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = json_decode(curl_exec($ch), true);
 
@@ -46,42 +68,6 @@ class Start_Charge
            $exception_message = curl_error($ch);  
         }
         throw new Exception($exception_message);
-    } else if($info['http_code'] < 200 || $info['http_code'] > 299) {
-      // Got a non-200 error code.
-      Start::handleErrors($result, $info['http_code']);
-    }
-    curl_close($ch);
-
-    return $result;
-  }
-
-  /**
-  * List all created charges
-  *
-  * @return array list of transactions
-  * @throws Start_Error_Parameters if any of the parameters is invalid
-  * @throws Start_Error_Authentication if the API Key is invalid
-  * @throws Start_Error if there is a general error in the API endpoint
-  * @throws Exception for any other errors
-  */
-  public static function all()
-  {
-    $url = Start::getEndPoint('charge_list');
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_CAINFO, Start::getCaPath());
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_USERPWD, Start::getApiKey() . ':');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_USERAGENT, 'Start/PHP/' . Start::VERSION);
-    $result = json_decode(curl_exec($ch), true);
-
-    // Check for errors and such.
-    $info = curl_getinfo($ch);
-    $errno = curl_errno($ch);
-    if( $result === false || $errno != 0 ) {
-      // Do error checking
-      throw new Exception(curl_error($ch));
     } else if($info['http_code'] < 200 || $info['http_code'] > 299) {
       // Got a non-200 error code.
       Start::handleErrors($result, $info['http_code']);
