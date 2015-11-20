@@ -45,15 +45,15 @@ class Start_Charge
   public static function make_request($url, $data =array()){
     $url = Start::getEndPoint($url);
     $ch = curl_init();
-    if(Start::getUserAgent() != ""){
+    if (Start::getUserAgent() != ""){
         $userAgent = Start::getUserAgent().' / StartPHP ' . Start::VERSION;
-    }else{
+    } else {
         $userAgent =  'StartPHP ' . Start::VERSION;
     }
     curl_setopt($ch, CURLOPT_CAINFO, Start::getCaPath());
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_USERPWD, Start::getApiKey() . ':');
-    if(!empty($data)){
+    if (!empty($data)){
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
     }
@@ -64,16 +64,16 @@ class Start_Charge
     // Check for errors and such.
     $info = curl_getinfo($ch);
     $errno = curl_errno($ch);
-    if( $result === false || $errno != 0 ) {
+    if ( $result === false || $errno != 0 ) {
       // Do error checking
-    if($errno == '1'  || $errno == '35' || $errno == '51' || $errno == '60'){
+    if ($errno == '1'  || $errno == '35' || $errno == '51' || $errno == '60'){
         $exception_message = "You weren’t able to make API request due to SSL/TLS error. "
                 . "  Here you can read how to solve this: https://docs.start.payfort.com/help/php/ssl#error_".$errno;
-        }else{
+        } else {
            $exception_message = curl_error($ch);  
         }
         throw new Exception($exception_message);
-    } else if($info['http_code'] < 200 || $info['http_code'] > 299) {
+    } else if ($info['http_code'] < 200 || $info['http_code'] > 299) {
       // Got a non-200 error code.
       Start::handleErrors($result, $info['http_code']);
     }
