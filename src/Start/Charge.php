@@ -38,7 +38,7 @@ class Start_Charge
   */
   public static function all()
   {
-       $return_data =  Start_Charge::make_request("charge_list");
+       $return_data = Start_Charge::make_request("charge_list");
        return $return_data;
   }
   
@@ -48,7 +48,7 @@ class Start_Charge
     if (Start::getUserAgent() != ""){
         $userAgent = Start::getUserAgent().' / StartPHP ' . Start::VERSION;
     } else {
-        $userAgent =  'StartPHP ' . Start::VERSION;
+        $userAgent = 'StartPHP ' . Start::VERSION;
     }
     curl_setopt($ch, CURLOPT_CAINFO, Start::getCaPath());
     curl_setopt($ch, CURLOPT_URL, $url);
