@@ -21,6 +21,14 @@ class Start
   * @var string
   */
   protected static $apiKey;
+  
+  /**
+  * ShoppingCart name and version
+  * Our plugin version
+  * “WooCommerce 4.2.2 / Start Plugin 0.1.2”
+  * @var string
+  */
+  protected static $userAgent = "";
 
   /**
   * API Server URL
@@ -65,6 +73,25 @@ class Start
   public static function getApiKey()
   {
     return self::$apiKey;
+  }
+  /**
+  * sets API Key
+  *
+  * @param string $userAgent UserAgent
+  */
+  public static function setUserAgent($userAgent)
+  {
+    self::$userAgent = $userAgent;
+  }
+
+  /**
+  * returns current set UserAgent
+  *
+  * @return string UserAgent
+  */
+  public static function getUserAgent()
+  {
+    return self::$userAgent;
   }
 
   /**

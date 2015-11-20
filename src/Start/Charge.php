@@ -45,6 +45,11 @@ class Start_Charge
   public static function make_request($url, $data =array()){
     $url = Start::getEndPoint($url);
     $ch = curl_init();
+    if(Start::getUserAgent() != ""){
+        $userAgent = Start::getUserAgent().' / StartPHP ' . Start::VERSION;
+    }else{
+        $userAgent =  'StartPHP ' . Start::VERSION;
+    }
     curl_setopt($ch, CURLOPT_CAINFO, Start::getCaPath());
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_USERPWD, Start::getApiKey() . ':');
@@ -52,7 +57,7 @@ class Start_Charge
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
     }
-    curl_setopt($ch, CURLOPT_USERAGENT, 'StartPHP ' . Start::VERSION);
+    curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = json_decode(curl_exec($ch), true);
 
