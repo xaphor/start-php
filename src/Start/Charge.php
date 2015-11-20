@@ -63,7 +63,7 @@ class Start_Charge
       // Do error checking
     if($errno == '1'  || $errno == '35' || $errno == '51' || $errno == '60'){
         $exception_message = "You weren’t able to make API request due to SSL/TLS error. "
-                . "  Here you can read how to solve this: https://docs.start.payfort.com/help/ssl#error_".$errno;
+                . "  Here you can read how to solve this: https://docs.start.payfort.com/help/php/ssl#error_".$errno;
         }else{
            $exception_message = curl_error($ch);  
         }
