@@ -43,7 +43,7 @@ class Start_Charge
             $exception_message = "You weren’t able to make API request due to SSL/TLS error. "
                 . "  Here you can read how to solve this: https://docs.start.payfort.com/help/php/ssl#error_".$errno;
         } else {
-            $exception_message = curl_error($ch)
+            $exception_message = curl_error($ch);
         }
 
         throw new Exception($exception_message);
