@@ -45,7 +45,8 @@ class Start
     'charge_list'   => 'charges/',
     'customer'      => 'customers/',
     'customer_list' => 'customers/',
-    'refund'        => 'refunds/'
+    'refund'        => 'refunds/',
+    'exception'     => 'health/exception'
   );
 
   /*
