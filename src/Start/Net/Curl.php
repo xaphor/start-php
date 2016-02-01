@@ -44,7 +44,7 @@ class Start_Net_Curl {
             } else {
                 $exception_message = "Curl error: " . $curl_error;
             }
-            throw new Exception($exception_message);
+            throw new Start_Error_SSLError($exception_message);
         } else if ($info['http_code'] < 200 || $info['http_code'] > 299) {
             // Got a non-200 error code.
             Start::handleErrors($result, $info['http_code']);

@@ -50,6 +50,7 @@ class Start
   );
 
   public static $useCurl = false;
+  public static $fallback = true;
 
   /*
   * Path to the CA Certificates required when making CURL calls
