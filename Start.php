@@ -12,3 +12,4 @@ require_once 'src/Start/Error/Authentication.php';
 require_once 'src/Start/Error/Banking.php';
 require_once 'src/Start/Error/Processing.php';
 require_once 'src/Start/Error/Request.php';
+require_once 'src/Start/Error/SSLError.php';

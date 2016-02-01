@@ -58,7 +58,7 @@ class Start_Net_Stream {
                 . "Here you can read how to solve this: https://docs.start.payfort.com/help/php/ssl. "
                 . "Error details: ". $e->getMessage();
 
-            throw new Exception($exception_message);
+            throw new Start_Error_SSLError($exception_message);
         }
 
         $result = json_decode($response, true);
