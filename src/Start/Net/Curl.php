@@ -5,9 +5,9 @@ class Start_Net_Curl {
         $ch = curl_init();
 
         if (Start::getUserAgent() != "") {
-            $userAgent = Start::getUserAgent() . ' / StartPHP ' . Start::VERSION;
+            $userAgent = Start::getUserAgent() . ' / StartPHP CURL ' . Start::VERSION;
         } else {
-            $userAgent = 'StartPHP ' . Start::VERSION;
+            $userAgent = 'StartPHP CURL' . Start::VERSION;
         }
 
         curl_setopt($ch, CURLOPT_CAINFO, Start::getCaPath());
