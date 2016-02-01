@@ -19,6 +19,10 @@ class Start_ChargeTest extends \PHPUnit_Framework_TestCase
     function setUp()
     {
         Start::setApiKey('test_sec_k_2b99b969196bece8fa7fd');
+
+        if (getenv("CURL") == "1") {
+            Start::$useCurl = true;
+        }
     }
 
     function testList()

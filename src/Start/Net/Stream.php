@@ -61,15 +61,8 @@ class Start_Net_Stream {
             throw new Exception($exception_message);
         }
 
-        echo "Response: ", $response;
-        /* print_r($response); */
-        /* echo "Headers:"; */
-        print_r($http_response_header);
-
         $result = json_decode($response, true);
         $headers = self::parseHeaders($http_response_header);
-
-        print_r($headers);
 
         if ($headers['http_code'] < 200 || $headers['http_code'] > 299) {
             Start::handleErrors($result, $headers['http_code']);

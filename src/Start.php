@@ -49,6 +49,8 @@ class Start
     'exception'     => 'health/exception'
   );
 
+  public static $useCurl = false;
+
   /*
   * Path to the CA Certificates required when making CURL calls
   */
