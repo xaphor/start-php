@@ -1,6 +1,10 @@
 <?php
 class Start_Net_Curl {
     public static function make_request($url, $data = array()) {
+        if (!defined('CURL_SSLVERSION_TLSv1_2')) {
+            define('CURL_SSLVERSION_TLSv1_2', 6);
+        }
+
         $url = Start::getEndPoint($url);
         $ch = curl_init();
 
@@ -13,6 +17,7 @@ class Start_Net_Curl {
         curl_setopt($ch, CURLOPT_CAINFO, Start::getCaPath());
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_USERPWD, Start::getApiKey() . ':');
+        curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
         if (!empty($data)) {
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
