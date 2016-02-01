@@ -2,13 +2,6 @@
 class Start_Net_Stream {
 
     public static function make_request($url, $data = array()) {
-        $allow_url_fopen = (ini_get('allow_url_fopen') == "1");
-
-        if (!$allow_url_fopen) {
-            $exception_message = "In order to make SSL/TLS requests to Payfort Start API please set 'allow_url_fopen' to 'On' in your php.ini file";
-            throw new Exception($exception_message);
-        }
-
         $url = Start::getEndPoint($url);
         $api_key = Start::getApiKey();
 
