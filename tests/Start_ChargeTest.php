@@ -42,6 +42,22 @@ class Start_ChargeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result["state"], "captured");
     }
 
+    function testInvalidData()
+    {
+        $data = array(
+            "amount" => 1050,
+            "currency" => "usd",
+            "email" => "ahmed@example.com",
+        );
+
+        try {
+            $result = Start_Charge::create($data);
+        } catch (Start_Error_Request $e) {
+            $this->assertSame('unprocessable_entity', $e->getErrorCode());
+            $this->assertSame('Request params are invalid.', $e->getMessage());
+        }
+    }
+
     function testCreateFailure()
     {
         $data = array(
