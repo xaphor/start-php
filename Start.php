@@ -2,6 +2,9 @@
 
 //File to use when using lib without composer.
 require_once 'src/Start.php';
+require_once 'src/Start/Net/Curl.php';
+require_once 'src/Start/Net/Stream.php';
+require_once 'src/Start/Request.php';
 require_once 'src/Start/Charge.php';
 require_once 'src/Start/Error.php';
 require_once 'src/Start/Customer.php';
