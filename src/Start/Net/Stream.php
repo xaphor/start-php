@@ -2,7 +2,6 @@
 class Start_Net_Stream {
 
     public static function make_request($url, $data = array()) {
-        echo "Stream";
         $allow_url_fopen = (ini_get('allow_url_fopen') == "1");
 
         if (!$allow_url_fopen) {

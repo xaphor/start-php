@@ -1,7 +1,6 @@
 <?php
 class Start_Net_Curl {
     public static function make_request($url, $data = array()) {
-        echo "CURL";
         $url = Start::getEndPoint($url);
         $ch = curl_init();
 
