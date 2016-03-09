@@ -39,4 +39,22 @@ class Start_Charge {
         $return_data = Start_Request::make_request("charge_list");
         return $return_data;
     }
+
+    /**
+     * capture an already authorized charge for given $chargeID and $data
+     *
+     * @param array $data the data for the transaction, contains amount
+     * @return array the result of the transaction
+     * @throws Start_Error_Authentication if the API Key is invalid
+     * @throws Start_Error_Banking if the card could not be accepted
+     * @throws Start_Error_Processing if the there's a failure from Start
+     * @throws Start_Error_Request if any of the parameters is invalid
+     * @throws Start_Error if there is a general error in the API endpoint
+     * @throws Exception for any other errors
+     */
+    public static function capture($chargeId, $data) {
+        $url = "/charges/".$chargeId."/capture";
+        $return_data = Start_Request::make_request($url, $data);
+        return $return_data;
+    }
 }
