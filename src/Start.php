@@ -46,7 +46,8 @@ class Start
     'customer'      => 'customers/',
     'customer_list' => 'customers/',
     'refund'        => 'refunds/',
-    'exception'     => 'health/exception'
+    'exception'     => 'health/exception',
+    'capture'       => 'capture/'
   );
 
   public static $useCurl = false;
@@ -116,6 +117,17 @@ class Start
   public static function getEndPoint($name)
   {
     return self::$baseURL . self::$endpoints[$name];
+  }
+
+  /**
+  * deals with capture URI with charge ID
+  *
+  * @return string endpoint URI for capture
+  */
+
+  public static function getChargeEndPoint($chargeID, $name)
+  {
+    return self::$baseURL .'charges/'.$chargeID.self::$endpoints[$name];
   }
 
   public static function handleErrors($result, $httpStatusCode)
