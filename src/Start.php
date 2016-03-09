@@ -46,7 +46,8 @@ class Start
     'customer'      => 'customers/',
     'customer_list' => 'customers/',
     'refund'        => 'refunds/',
-    'exception'     => 'health/exception'
+    'exception'     => 'health/exception',
+    'capture'       => 'capture'
   );
 
   public static $useCurl = false;
@@ -114,9 +115,20 @@ class Start
   * @return string endpoint URI
   */
   public static function getEndPoint($name)
+
   {
-    return self::$baseURL . self::$endpoints[$name];
+    if(strpos($name, 'capture') !== false) { 
+
+      return self::$baseURL . $name;
+    }
+
+    else {
+
+      return self::$baseURL . self::$endpoints[$name];
+    }
+
   }
+
 
   public static function handleErrors($result, $httpStatusCode)
   {
